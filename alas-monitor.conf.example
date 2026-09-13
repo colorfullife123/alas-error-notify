@@ -1,0 +1,25 @@
+# Copy this file to /etc/alas-monitor.conf and set mode 600.
+
+CONTAINER="alas"
+
+MQTT_HOST="192.168.1.10"
+MQTT_PORT="1883"
+MQTT_USER="change-me"
+MQTT_PASS="change-me"
+MQTT_TOPIC="nas/alas/error"
+MQTT_QOS="1"
+MQTT_TIMEOUT_SECONDS="10"
+
+# Optional ALAS error screenshot handling. Leave either value empty to disable.
+ERROR_DIR="/path/to/AzurLaneAutoScript/log/error"
+IMAGE_TARGET="/path/to/shared/ALAS/error/latest.png"
+IMAGE_MAX_AGE_MINUTES="30"
+
+LOOKBACK="15m"
+STATE_DIR="/var/lib/alas-manual-alert"
+LOCK_FILE="/run/alas-manual-alert.lock"
+HOST_LABEL="NAS"
+
+# Only final human-takeover markers belong here. Do not add WARNING,
+# GameStuckError, Traceback or AttributeError unless you want false alarms.
+MANUAL_PATTERN='Request human takeover|Manual intervention required'
