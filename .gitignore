@@ -1,0 +1,16 @@
+# Local secrets and runtime state
+*.conf
+.env
+.env.*
+!.env.example
+*.log
+*.png
+*.jpg
+*.jpeg
+*.bak*
+state/
+
+# Editor and OS files
+.DS_Store
+.idea/
+.vscode/
