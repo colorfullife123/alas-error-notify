@@ -29,8 +29,6 @@ if [[ -f "$TARGET_SCRIPT" ]]; then
     printf '已备份原脚本：%s\n' "$backup"
 fi
 
-install -m 700 "$PROJECT_DIR/alas_monitor.sh" "$TARGET_SCRIPT"
-
 write_config() {
     local mqtt_host mqtt_port mqtt_user mqtt_pass mqtt_topic
     local container error_dir image_target host_label temporary
@@ -95,6 +93,10 @@ else
     write_config
     printf '配置已保存：%s（权限 600）\n' "$CONFIG_FILE"
 fi
+
+# Replace the active monitor only after configuration completed successfully.
+# If the user cancels an interactive prompt, the existing script keeps running.
+install -m 700 "$PROJECT_DIR/alas_monitor.sh" "$TARGET_SCRIPT"
 
 # Avoid creating a duplicate schedule when the legacy root crontab already
 # invokes the same target script.
